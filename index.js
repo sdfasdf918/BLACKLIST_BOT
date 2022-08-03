@@ -41,7 +41,7 @@ mongoose.connect("mongodb+srv://egteam:egteam@cluster0.lt1comu.mongodb.net/?retr
       .addField("Mention: ", `<@${exec.id}>`, true)
       .addField('Reason:', data.info.reason)
       .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
-      .setFooter('Made By EGYPT_STORE', message.author.displayAvatarURL({ dynamic: true }));
+      .setFooter({ text: 'Made By EGYPT_STORE', iconURL: message.author.displayAvatarURL({ dynamic: true })});
       let more = null;
       if (Array.isArray(data.info.advice)) {
         if (data.info.advice.length === 1) {
@@ -72,7 +72,7 @@ mongoose.connect("mongodb+srv://egteam:egteam@cluster0.lt1comu.mongodb.net/?retr
     let embed = new MessageEmbed()
     .setTimestamp()
     .setDescription(args.join(" "))
-    .setFooter('Made By EGYPT_STORE', message.author.displayAvatarURL({ dynamic: true }));
+    .setFooter({ text: 'Made By EGYPT_STORE', iconURL: message.author.displayAvatarURL({ dynamic: true })});
 
     
     sendAllGuilds(embed, undefined, undefined, message.attachments.size > 0 ? message.attachments.map(u =>u.proxyURL) : []);
@@ -147,12 +147,13 @@ mongoose.connect("mongodb+srv://egteam:egteam@cluster0.lt1comu.mongodb.net/?retr
             .addField("By: ", message.author.tag + ` (ID: ${message.author.id})`, true)
             .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
             .addField(`Reason: `, reason.content)
-            .setFooter('Made By EGYPT_STORE', message.author.displayAvatarURL({ dynamic: true }));
+            .setFooter({text: 'Made By EGYPT_STORE', iconURL: message.author.displayAvatarURL({ dynamic: true })});
 
             if (typeof parsedAdvice == "string") {
               embed.addField("Proof: ", parsedAdvice)
             }
             msg.edit("تم اعطاء العضو بلاك لست")
+            sendAllGuilds(embed, user.id, false);
             sendAllGuilds(embed, user.id, true, Array.isArray(parsedAdvice) ? parsedAdvice: []);
 
           })
@@ -175,7 +176,7 @@ mongoose.connect("mongodb+srv://egteam:egteam@cluster0.lt1comu.mongodb.net/?retr
           .addField("User: ", user)
           // .addField("Mention: ", `<@${user.id}>`, true)
           .addField("By: ", `${message.author.tag} (ID: ${message.author.id})`)
-          embed.setFooter('Made By EGYPT_STORE', message.author.displayAvatarURL({ dynamic: true }));
+          embed.setFooter({text: 'Made By EGYPT_STORE', iconURL: message.author.displayAvatarURL({ dynamic: true })});
           embed.addField("Reason: ", msg.content, true)
           embed.setTimestamp()
           sendAllGuilds(embed, _user.id, false);
